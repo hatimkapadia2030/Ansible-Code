@@ -14,7 +14,7 @@
    - name: Copy Index File
      become: yes
      become_method: sudo
-     template: {src: /etc/ansible/temp.code, dest: /var/www/html/index.html}
+     template: {src: /home/ec2-user/Ansible-Code/temp.html, dest: /var/www/html/index.html}
 
    handlers:
    - name: Restart Apache
