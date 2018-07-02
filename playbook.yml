@@ -1,0 +1,23 @@
+---
+ - hosts: test
+   tasks:
+   - name: Install Apache
+     become: yes
+     become_method: sudo
+     yum: {name: httpd, state: present}
+
+   - name: Start Apache
+     become: yes
+     become_method: sudo
+     service: {name: httpd, state: started, enabled: yes}
+
+   - name: Copy Index File
+     become: yes
+     become_method: sudo
+     template: {src: /etc/ansible/temp.code, dest: /var/www/html/index.html}
+
+   handlers:
+   - name: Restart Apache
+     become: yes
+     become_method: sudo
+     service: {name: httpd, state: restart}
