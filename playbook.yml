@@ -1,6 +1,6 @@
 ---
  - hosts: test
-   vars: {prvlg: sudo, srvc: httpd}
+##   vars: {prvlg: sudo, srvc: httpd}
    tasks:
    - name: Install Apache   
      become: yes
