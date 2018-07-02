@@ -2,4 +2,4 @@
 #Variable to playbook.yml
 
 prvlg: sudo
-srvc : httpd
+srvc: httpd

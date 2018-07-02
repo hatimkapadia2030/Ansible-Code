@@ -1,10 +1,11 @@
 ---
  - hosts: test
+   vars: {prvlg: sudo, srvc: httpd}
    tasks:
-   - name: Install Apache
+   - name: Install Apache   
      become: yes
-     become_method: {{ prvlg }}
-     yum: {name: {{ srvc }}, state: present}
+     become_method: "{{ prvlg }}"
+     yum: {name: "{{ srvc }}", state: present}
 
    - name: Start Apache
      become: yes
