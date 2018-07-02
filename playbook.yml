@@ -3,8 +3,8 @@
    tasks:
    - name: Install Apache
      become: yes
-     become_method: sudo
-     yum: {name: httpd, state: present}
+     become_method: {{ prvlg }}
+     yum: {name: {{ srvc }}, state: present}
 
    - name: Start Apache
      become: yes
