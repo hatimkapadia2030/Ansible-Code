@@ -1,0 +1,8 @@
+---
+ - hosts: test
+   tasks:
+   - name: Copy Index File
+     file: {force: yes, path: /var/www/html/index.html, state: absent}
+
+   - name: Remove Apache   
+     yum: {name: "{{ srvc }}", state: absent}

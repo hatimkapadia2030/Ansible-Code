@@ -1,0 +1,12 @@
+---
+ - hosts: all
+   tasks:
+   - name: Update Server
+     yum: {state: latest, name: '*'}
+ 
+   - name: Start up Install 
+     yum: {name: "{{ item }}", state: present}
+     with_items:
+     - wget
+     - tree
+     - vim    
