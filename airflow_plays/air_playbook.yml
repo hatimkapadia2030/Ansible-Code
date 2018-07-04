@@ -1,0 +1,21 @@
+---
+ - hosts: all
+   tasks:
+   - name: Update Server
+     yum: {state: latest, name: '*'}
+ 
+   - name: Start up Install 
+     yum: {name: "{{ item }}", state: present}
+     with_items:
+     - wget
+     - tree
+     - vim    
+     - python-devel   
+     - git
+     - gcc
+
+   - name: Install PIP
+     command: bash -c 'curl http://bootstrap-pypa.io/get-pip.py | python'
+
+   - name: Install Air-Flow with Postgres and Redis
+     command: bash -c 'pip install "apache-airflow[postgres,redis]"'
