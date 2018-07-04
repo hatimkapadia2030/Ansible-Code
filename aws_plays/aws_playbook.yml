@@ -23,7 +23,7 @@
        region: us-east-2
        state: present
        disable_rollback: false
-       template_url: https://s3.us-east-2.amazonaws.com/hk-acloudguru-cftemplatebucket/MyVpcTemplate.txt
+       template_url: https://s3.us-east-2.amazonaws.com/hk-acloudguru-cftemplatebucket/MyVPCTemplate.txt
        tags: {Name: hk-mycloud-ansible_created_stack}
 
 #   - name: Delete Stack
