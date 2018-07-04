@@ -3,16 +3,28 @@
    connection: local
    gather_facts: False
 
+#   tasks:
+#   - name: Create An EC2 Instance
+#     ec2:
+#        key_name: hk-mycloud-MUMKeyPair
+#        group: test_aws
+#        instance_type: t2.micro
+#        image: ami-5b673c34
+#        instance_tags: {Name: hk-mycloud-ansiblecreated}
+#        group: hk-mycloud-linuxrefreshercourse-sg
+#        wait: yes
+#        region: ap-south-1
+#        vpc_subnet_id: subnet-345b935c
+#        assign_public_ip: yes
    tasks:
-   - name: Create An EC2 Instance
-     ec2:
-        key_name: hk-mycloud-MUMKeyPair
-        group: test_aws
-        instance_type: t2.micro
-        image: ami-5b673c34
-        instance_tags: {Name: hk-mycloud-ansiblecreated}
-        group: hk-mycloud-linuxrefreshercourse-sg
-        wait: yes
-        region: ap-south-1
-        vpc_subnet_id: subnet-345b935c
-        assign_public_ip: yes
+   - name: Create AWS Stack
+     cloudformation:
+       stack_name: Ansible-Created
+       region: us-east-2
+       state: present
+       disable_rollback: false
+       template_url: https://s3.us-east-2.amazonaws.com/hk-acloudguru-cftemplatebucket/MyVpcTemplate
+       tags: {Name: hk-mycloud-ansible_created_stack}
+
+#   - name: Delete Stack
+#     cloudformation: {region: us-east-2, stack_name: Ansible-Created , state: absent}
