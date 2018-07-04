@@ -1,0 +1,9 @@
+---
+ - hosts: localhost
+   tasks:
+   - name: Git Add
+     command: bash -c 'git add . --all'
+   - name: Git Commit
+     command: bash -c 'git commit -m "Updated for the day"'
+   - name: Git Push
+     command: bash -c 'git push https://hatimkapadia2030:happy_2030@github.com/hatimkapadia2030/Ansible-Code'
