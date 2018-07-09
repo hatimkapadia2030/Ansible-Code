@@ -17,5 +17,28 @@
    - name: Install PIP
      command: bash -c 'curl http://bootstrap-pypa.io/get-pip.py | python'
 
-   - name: Install Air-Flow with Postgres and Redis
-     command: bash -c 'pip install "apache-airflow[postgres,redis]"'
+   - name: Make Airflow Home Dir
+     command: bash -c 'mkdir /home/ec2-user/airflow'
+
+   - name: Install Airflow Deps      
+     command: bash -c 'pip uninstall markupsafe -y; pip install markupsafe; pip install fernet'
+
+   - name: Install Airflow
+     - shell: 'export AIRFLOW_HOME=/home/ec2-user/airflow'
+     - shell:  pip install "apache-airflow[postgres,redis,crypto]"
+
+   - name: Generate FerNet Key
+     command: bash -c 'python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"'
+     register: fernet_key
+ 
+   - name: Update AirFlow config file
+     lineinfile:
+      path: /home/ec2-user/airflow/airflow.cfg
+      regexp: '^fernet_key = '
+      line: 'fernet_key = "{{ fernet_key.stdout }}"'
+
+   - name: Initialize Airflow DB
+     command: bash -c 'airflow initdb'
+
+   - name: Start Airflow Server
+     command: bash -c 'airflow webserver -D -p 8080'

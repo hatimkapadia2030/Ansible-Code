@@ -1,0 +1,14 @@
+---
+ - hosts: all
+   gather_facts: false
+   vars: {temp: /root/.bashrc}
+   tasks:
+   - name: Test1
+     lineinfile: 
+      path: /root/.bashrc 
+      line: 'export AIRFLOW_HOME=/home/ec2-user/airflow'
+      insertafter: 'EOF'
+      regexp: 'export AIRFLOW_HOME=/home/ec2-user/airflow'
+
+   - name: Test2
+     command: source "{{ temp }}"
