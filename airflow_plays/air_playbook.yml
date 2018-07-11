@@ -1,16 +1,16 @@
 ---
  - hosts: localhost
    tasks:
-   - name: Update Server
-     yum: {state: latest, name: '*'}
- 
-   - name: Start up Install 
-     yum: {name: "{{ item }}", state: present}
-     with_items:
-     - vim    
-     - python-devel
-     - python-pip
-     - gcc
+#   - name: Update Server
+#     yum: {state: latest, name: '*'}
+# 
+#   - name: Start up Install 
+#     yum: {name: "{{ item }}", state: present}
+#     with_items:
+#     - vim    
+#     - python-devel
+#     - python-pip
+#     - gcc
 
 #   - name: Install PIP
 #     command: bash -c 'curl http://bootstrap-pypa.io/get-pip.py | python'
