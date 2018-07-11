@@ -19,12 +19,15 @@
    tasks:
    - name: Create AWS Stack
      cloudformation:
+       aws_access_key: AKIAJXQKNKP7FB5J2N6Q
+       aws_secret_key: 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
        stack_name: Ansible-Created
        region: us-east-2
        state: present
        disable_rollback: false
        template_url: https://s3.us-east-2.amazonaws.com/hk-acloudguru-cftemplatebucket/MyVPCTemplate.txt
        tags: {Name: hk-mycloud-ansible_created_stack}
+     register: stack_resources
 
 #   - name: Delete Stack
 #     cloudformation: {region: us-east-2, stack_name: Ansible-Created , state: absent}
